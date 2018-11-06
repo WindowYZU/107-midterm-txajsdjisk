@@ -15,6 +15,8 @@ import java.util.logging.Logger;
 import javafx.scene.AccessibleAttribute;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.ProgressMonitor;
 import javax.swing.SwingUtilities;
 
@@ -101,6 +103,9 @@ public class NewJFrame extends javax.swing.JFrame {
         try {
             jButton1.setEnabled(false);
             //從 combobox 抓出被選到的項目，存到變數裡
+            DefaultListModel model=(DefaultListModel) jList1.getModel();
+            model.addElement(jComboBox1.getSelectedItem());
+            jList1.updateUI();
             String selectedItem="";
             /////////////////////////////////////
             URL url = new URL(selectedItem);
@@ -127,6 +132,9 @@ public class NewJFrame extends javax.swing.JFrame {
                                     URL fileURL=tempFile.toURI().toURL();
                                     //利用 fileURL 將 image icon 加到 jLabel2
                                     ////////////////////////////////////////
+                                    ImageIcon icon2=new ImageIcon(fileURL);
+                                    JLabel label2 = new JLabel();
+                                    label2.setIcon(icon2);
                                     jList1.updateUI();
                                 } catch (Exception ex) {
                                     Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
